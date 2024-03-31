@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>line picker thing</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('cynwalkermmmmm').addEventListener('click', function() {
+                const fileInput = document.getElementById('fileInput');
+                if (fileInput.files.length === 0) {
+                    alert('file pls');
+                    return;
+                }
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const text = e.target.result;
+                    const words = text.split('\n').filter(Boolean);
+                    const randomWord = words[Math.floor(Math.random() * words.length)];
+                    document.getElementById('randomWord').textContent = randomWord;
+                };
+
+                reader.readAsText(file);
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="file" id="fileInput" accept=".txt">
+    <button id="cynwalkermmmmm">pick da line</button>
+    <p id="randomWord"></p>
+</body>
+</html>
